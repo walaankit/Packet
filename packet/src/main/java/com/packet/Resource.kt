@@ -1,4 +1,4 @@
-package com.walaankit.packet
+package com.packet
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update

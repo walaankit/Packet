@@ -1,4 +1,4 @@
-package com.walaankit.packettest
+package com.packettest
 
 import org.junit.Test
 

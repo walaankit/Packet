@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.walaankit.packettest'
+    namespace 'com.packettest'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.walaankit.packettest"
+        applicationId "com.packettest"
         minSdk 21
         targetSdk 33
         versionCode 1
