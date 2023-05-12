@@ -3,6 +3,7 @@ package com.walaankit.packet
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 
+
 sealed class Resource<T, E>( val value: T? = null) {
     /** Denotes no op started or all standard op completed and reset to default state **/
     data class Idle<T, E>(private val initialData: T? = null) : Resource<T, E>(initialData){
