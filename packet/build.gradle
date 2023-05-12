@@ -21,6 +21,12 @@ android {
             minifyEnabled false
         }
     }
+
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+        }
+    }
 }
 
 dependencies {
@@ -35,7 +41,7 @@ afterEvaluate {
                 from components.release
                 groupId = "com.github.walaankit"
                 artifactId = "Packet"
-                version = "0.1.1"
+                version = "0.1.5"
             }
         }
     }
