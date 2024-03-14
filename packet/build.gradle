@@ -28,7 +28,7 @@ android {
         }
     }
 
-    
+
     namespace 'com.packet'
 }
 ext{
@@ -50,7 +50,7 @@ afterEvaluate {
                 from components.release
                 groupId = "com.github.walaankit"
                 artifactId = "Packet"
-                version = "0.1.6"
+                version = "0.1.7"
             }
         }
     }
