@@ -1,6 +1,6 @@
 package com.packettest
 
-import com.packet.Resource
+import com.packet.Packet
 
 class PackageTest {
 

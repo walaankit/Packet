@@ -28,10 +28,16 @@ android {
         }
     }
 }
+ext{
+    lifecycle_version = '2.7.0'
+}
 
 dependencies {
     implementation ("androidx.core:core-ktx:1.10.1")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+
+    implementation "androidx.lifecycle:lifecycle-process:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
 }
 
 afterEvaluate {
@@ -41,7 +47,7 @@ afterEvaluate {
                 from components.release
                 groupId = "com.github.walaankit"
                 artifactId = "Packet"
-                version = "0.1.5"
+                version = "0.1.6"
             }
         }
     }
