@@ -27,6 +27,9 @@ android {
             withSourcesJar()
         }
     }
+
+    
+    namespace 'com.packet'
 }
 ext{
     lifecycle_version = '2.7.0'
