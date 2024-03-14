@@ -28,6 +28,13 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlin {
+        jvmToolchain(17)
+    }
 
     namespace 'com.packet'
 }
@@ -50,7 +57,7 @@ afterEvaluate {
                 from components.release
                 groupId = "com.github.walaankit"
                 artifactId = "Packet"
-                version = "0.1.7"
+                version = "0.1.9"
             }
         }
     }
