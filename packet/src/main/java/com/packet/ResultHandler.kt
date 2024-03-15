@@ -121,7 +121,7 @@ class ResultHandler<T, E> {
     }
 
     interface ResultHandlerThrowable<E> {
-        fun mapThrowableToErrorData(): E
+        fun mapToErrorModel(): E
     }
 }
 

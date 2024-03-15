@@ -3,11 +3,13 @@ package com.packet.extensions
 import androidx.lifecycle.LifecycleOwner
 import com.packet.Packet
 import com.packet.ResultHandler
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.withContext
 
 fun <T, E> MutableStateFlow<Packet<T, E>>.updateWithFailure(
     throwable: Throwable,
@@ -15,7 +17,7 @@ fun <T, E> MutableStateFlow<Packet<T, E>>.updateWithFailure(
     update { packet ->
         Packet.Failure(
             throwable,
-            (throwable as? ResultHandler.ResultHandlerThrowable<E>)?.mapThrowableToErrorData(),
+            (throwable as? ResultHandler.ResultHandlerThrowable<E>)?.mapToErrorModel(),
             packet.value
         )
     }
@@ -161,5 +163,19 @@ inline fun <T, E> Packet<T, E>.`when`(
             onConsumeFlow?.invoke()
         }
         is Packet.Loading -> onLoading()
+    }
+}
+
+suspend inline fun <reified T,E> safeApiCall(
+    dispatcher: CoroutineDispatcher,
+    crossinline apiCall: suspend () -> T,
+    crossinline getResultHandlerThrowable: suspend (Throwable) -> ResultHandler.ResultHandlerThrowable<E>
+): T {
+    return withContext(dispatcher) {
+        try {
+            apiCall()
+        } catch (throwable: Throwable) {
+            throw(getResultHandlerThrowable(throwable) as Throwable)
+        }
     }
 }
