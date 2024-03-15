@@ -28,6 +28,8 @@ android {
         }
     }
 
+
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
@@ -65,14 +67,28 @@ dependencies {
     implementation 'androidx.compose.foundation:foundation'
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
+//afterEvaluate {
+//    publishing {
+//        publications {
+//            release(MavenPublication) {
+//                from components.release
+//                groupId = "com.github.walaankit"
+//                artifactId = "Packet"
+//                version = "0.1.10"
+//            }
+//        }
+//    }
+//}
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = "com.github.walaankit"
+            artifactId = "Packet"
+            version = "0.1.11"
+
+            afterEvaluate {
                 from components.release
-                groupId = "com.github.walaankit"
-                artifactId = "Packet"
-                version = "0.1.10"
             }
         }
     }
