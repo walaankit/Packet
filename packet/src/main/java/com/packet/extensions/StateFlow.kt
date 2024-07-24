@@ -103,9 +103,9 @@ inline fun <T, E> StateFlow<Packet<T, E>>.collectOnStarted(
     lifecycleOwner: LifecycleOwner,
     crossinline onSuccess: (value: T) -> Unit,
     crossinline onFailure: (
-        error: E?
+        error: E?, value: T?
     ) -> Unit,
-    crossinline onLoading: () -> Unit = {},
+    crossinline onLoading: ( value: T?) -> Unit = {},
     crossinline onIdle: (value: T?) -> Unit = {},
     noinline onConsumeFlow: (() -> Unit)? = null
 ) {
@@ -124,9 +124,9 @@ inline fun <T, E> StateFlow<Packet<T, E>>.collectOnResumed(
     lifecycleOwner: LifecycleOwner,
     crossinline onSuccess: (value: T) -> Unit,
     crossinline onFailure: (
-        error: E?
+        error: E?, value: T?
     ) -> Unit,
-    crossinline onLoading: () -> Unit = {},
+    crossinline onLoading: ( value: T?) -> Unit = {},
     crossinline onIdle: (value: T?) -> Unit = {},
     noinline onConsumeFlow: (() -> Unit)? = null
 ) {
@@ -144,9 +144,9 @@ inline fun <T, E> StateFlow<Packet<T, E>>.collectOnResumed(
 inline fun <T, E> Packet<T, E>.`when`(
     crossinline onSuccess: (value: T) -> Unit,
     crossinline onFailure: (
-        error: E?
+        error: E?, value: T?
     ) -> Unit,
-    crossinline onLoading: () -> Unit = {},
+    crossinline onLoading: (value: T?) -> Unit = {},
     crossinline onIdle: (value: T?) -> Unit = {},
     noinline onConsumeFlow: (() -> Unit)? = null
 ) {
@@ -158,11 +158,12 @@ inline fun <T, E> Packet<T, E>.`when`(
         is Packet.Idle -> onIdle(value)
         is Packet.Failure -> {
             onFailure(
-                error
+                error,
+                value
             )
             onConsumeFlow?.invoke()
         }
-        is Packet.Loading -> onLoading()
+        is Packet.Loading -> onLoading(value)
     }
 }
 

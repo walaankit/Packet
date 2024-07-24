@@ -11,8 +11,8 @@ android {
         applicationId "com.packettest"
         minSdk 21
         targetSdk 33
-        versionCode 2
-        versionName "0.1.6"
+        versionCode 3
+        versionName "0.1.7"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
