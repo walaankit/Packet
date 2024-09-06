@@ -20,7 +20,7 @@ inline fun <T,E> ScreenPacketComposable(
 ) {
 
     Box(
-        modifier = modifier.fillMaxSize()
+        modifier = modifier
     ){
 
         val packetValueIsNotNull = screenPacket.value != null
